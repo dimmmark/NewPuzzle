@@ -4,7 +4,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public int Capasity;
-    [HideInInspector] public List<Block> PlatformList = new List<Block>();
+     public List<Block> PlatformList = new List<Block>();
     public int Widht;
     public int Height;
     public void Init(Management management)
@@ -20,23 +20,26 @@ public class Platform : MonoBehaviour
             return true;
         }
         
-        else if (PlatformList.Count == Capasity)
+        else  
         {
-            var startCheckColor = PlatformList[0].BlockColor;
-
-            for (int i = 0; i < PlatformList.Count; i++)
+            if(PlatformList.Count == Capasity)
             {
-                if (PlatformList[i].BlockColor == startCheckColor)
+                for (int i = 0; i < PlatformList.Count; i++)
                 {
+                    var startCheckColor = PlatformList[0].BlockColor;
+                    if (PlatformList[i].BlockColor == startCheckColor)
+                    {
 
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            return true;
+            return false;
         }
-        return false;
+        
     }
 }

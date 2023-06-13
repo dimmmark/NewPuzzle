@@ -45,6 +45,10 @@ public class Block : MonoBehaviour
         if (_33)
             Blocks[2, 2] = _33;
     }
+    public void Init(Management management)
+    {
+        management.InstallBlock((int)transform.position.x, (int)transform.position.z, this);
+    }
     public void SetColor(bool avaliable)
     {
         if (avaliable)

@@ -12,10 +12,12 @@ public class Management : MonoBehaviour
     private int x;
     private int y;
     public Platform[] Platforms;
-
+    public Block[] Blocks;
+    Platform platform;
     private void Awake()
     {
         Platforms = FindObjectsOfType<Platform>();
+        Blocks = FindObjectsOfType<Block>();
         _mainCamera = Camera.main;
     }
     void Update()
@@ -30,6 +32,26 @@ public class Management : MonoBehaviour
                 {
                     _selectedBlock = block;
                     RemoveFromDictionary(block);
+                    
+                    for (int i = 0; i < Platforms.Length; i++)
+                    {
+                        for (int j = 0; j < Platforms[i].PlatformList.Count; j++)
+                        {
+                            if (Platforms[i].PlatformList[j] == block)
+                            {
+                                platform = Platforms[i];
+                                break;
+                            }
+                        }
+                    }
+                    platform.PlatformList.RemoveAll(x => x == block);    
+                    //for (int i = 0; i < platform.PlatformList.Count; i++)
+                    //{
+                    //    if (platform.PlatformList[i] == block)
+                    //    {
+                    //       platform.PlatformList[i].Remove(block);
+                    //    }
+                    //}
                 }
             }
         }
@@ -113,22 +135,18 @@ public class Management : MonoBehaviour
         Console.Clear();
         CheckWin();
     }
-    private void CheckWin()
+    private bool CheckWin()
     {
         for (int i = 0; i < Platforms.Length; i++)
         {
-            if (Platforms[i].Check())
+            if (!Platforms[i].Check())
             {
-                
-            }
-            else
-            {
-                Debug.Log("Lose");
-                break;
+                Debug.Log("LOSE");
+                return false;
             }
         }
         Debug.Log("WIN");
-
+        return true;
     }
 
     private void RemoveFromDictionary(Block block)
@@ -148,7 +166,7 @@ public class Management : MonoBehaviour
             BlocksDictionary.Remove(key);
         }
     }
-
+    
 }
 
 
