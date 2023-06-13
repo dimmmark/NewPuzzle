@@ -14,6 +14,7 @@ public class Management : MonoBehaviour
     public Platform[] Platforms;
     public Block[] Blocks;
     Platform platform;
+    private Vector3 _startPosition;
     private void Awake()
     {
         Platforms = FindObjectsOfType<Platform>();
@@ -32,7 +33,9 @@ public class Management : MonoBehaviour
                 {
                     _selectedBlock = block;
                     RemoveFromDictionary(block);
-                    
+                    _startPosition = _selectedBlock.transform.position;
+
+
                     for (int i = 0; i < Platforms.Length; i++)
                     {
                         for (int j = 0; j < Platforms[i].PlatformList.Count; j++)
@@ -45,13 +48,6 @@ public class Management : MonoBehaviour
                         }
                     }
                     platform.PlatformList.RemoveAll(x => x == block);    
-                    //for (int i = 0; i < platform.PlatformList.Count; i++)
-                    //{
-                    //    if (platform.PlatformList[i] == block)
-                    //    {
-                    //       platform.PlatformList[i].Remove(block);
-                    //    }
-                    //}
                 }
             }
         }
@@ -79,6 +75,13 @@ public class Management : MonoBehaviour
             else
             {
                 _selectedBlock.SetColor(false);
+                if(Input.GetMouseButtonUp(0))
+                {
+                    _selectedBlock.transform.position = _startPosition;
+                    _selectedBlock.SetStartColor();
+                    InstallBlock((int)_startPosition.x, (int)_startPosition.z, _selectedBlock);
+                    _selectedBlock = null;
+                }
             }
         }
     }
