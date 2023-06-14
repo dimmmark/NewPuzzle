@@ -2,10 +2,11 @@ using UnityEngine;
 
 public enum BlockColor
 {
-    red, yellow, green
+    red, yellow, green, blue
 }
 public class Block : MonoBehaviour
 {
+    public BlockColor BlockColor;
     public int BlockWidht;
     public int BlockHeight;
     public bool[,] Blocks;
@@ -13,7 +14,10 @@ public class Block : MonoBehaviour
     [SerializeField] private Material _denyColor;
     [SerializeField] private Material _allowColor;
     [SerializeField] private Material _startColor;
-    public BlockColor BlockColor;
+    [SerializeField] private Material _redColor;
+    [SerializeField] private Material _yellowColor;
+    [SerializeField] private Material _greenColor;
+    [SerializeField] private Material _blueColor;
     [SerializeField] private bool _11;
     [SerializeField] private bool _12;
     [SerializeField] private bool _13;
@@ -61,4 +65,29 @@ public class Block : MonoBehaviour
     {
         _renderer.material = _startColor;
     }
+    [ContextMenu("SetColorPrefs")]
+    public void SetPrefColor()
+    {
+        var value = BlockColor;
+        switch (value)
+        {
+            case BlockColor.red:
+                _renderer.material = _redColor;
+                _startColor = _redColor;
+                break;
+            case BlockColor.yellow:
+                _renderer.material = _yellowColor;
+                _startColor = _yellowColor;
+                break;
+            case BlockColor.blue:
+                _renderer.material = _blueColor;
+                _startColor = _blueColor;
+                break;
+            case BlockColor.green:
+                _renderer.material = _greenColor;
+                _startColor = _greenColor;
+                break;
+        }
+    }
+
 }

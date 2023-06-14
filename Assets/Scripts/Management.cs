@@ -47,7 +47,7 @@ public class Management : MonoBehaviour
                             }
                         }
                     }
-                    platform.PlatformList.RemoveAll(x => x == block);    
+                    platform.PlatformList.RemoveAll(x => x == block);
                 }
             }
         }
@@ -75,7 +75,7 @@ public class Management : MonoBehaviour
             else
             {
                 _selectedBlock.SetColor(false);
-                if(Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0))
                 {
                     _selectedBlock.transform.position = _startPosition;
                     _selectedBlock.SetStartColor();
@@ -91,7 +91,7 @@ public class Management : MonoBehaviour
         {
             for (int z = 0; z < block.BlockHeight; z++)
             {
-                if (block.Blocks[x,z])
+                if (block.Blocks[x, z])
                 {
                     Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
                     if (PlatformsDictionary.ContainsKey(coordinate) && (!BlocksDictionary.ContainsKey(coordinate)))
@@ -169,7 +169,7 @@ public class Management : MonoBehaviour
             BlocksDictionary.Remove(key);
         }
     }
-    
+
 }
 
 

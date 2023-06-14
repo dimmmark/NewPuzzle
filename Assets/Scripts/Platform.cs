@@ -4,7 +4,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public int Capasity;
-     public List<Block> PlatformList = new List<Block>();
+    public List<Block> PlatformList = new List<Block>();
     public int Widht;
     public int Height;
     public void Init(Management management)
@@ -19,10 +19,10 @@ public class Platform : MonoBehaviour
         {
             return true;
         }
-        
-        else  
+
+        else
         {
-            if(PlatformList.Count == Capasity)
+            if (PlatformList.Count == Capasity)
             {
                 for (int i = 0; i < PlatformList.Count; i++)
                 {
@@ -40,6 +40,6 @@ public class Platform : MonoBehaviour
             }
             return false;
         }
-        
+
     }
 }
