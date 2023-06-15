@@ -12,6 +12,7 @@ public class Management : MonoBehaviour
     private Camera _mainCamera;
     [SerializeField] private Block _selectedBlock;
     private Ray rayCol;
+    private Plane basePlane = new Plane(Vector3.up, Vector3.zero);
     public Dictionary<Vector2Int, Platform> PlatformsDictionary = new Dictionary<Vector2Int, Platform>();
     public Dictionary<Vector2Int, Block> BlocksDictionary = new Dictionary<Vector2Int, Block>();
     private int x;
@@ -42,10 +43,20 @@ public class Management : MonoBehaviour
         {
             if (Physics.Raycast(rayCol, out hit))
             {
+                
+
+
                 if (hit.collider.TryGetComponent<Block>(out Block block))
                 {
                     _selectedBlock = block;
-                block.transform.DOMoveY(.38f, .4f);
+
+
+                    basePlane.Raycast(rayCol, out float position);
+                    Vector3 worldPosition = rayCol.GetPoint(position);
+                    _offset = _selectedBlock.transform.position - worldPosition;
+
+
+                    block.transform.DOMoveY(.38f, .4f);
                     RemoveFromDictionary(block);
                     _startPosition = _selectedBlock.transform.position;
 
@@ -67,17 +78,19 @@ public class Management : MonoBehaviour
         }
         if (_selectedBlock != null)
         {
-            var basePlane = new Plane(Vector3.up, Vector3.zero);
+           // var basePlane = new Plane(Vector3.up, Vector3.zero);
 
             if (basePlane.Raycast(rayCol, out float position))
             {
-                Vector3 worldPosition = rayCol.GetPoint(position);
-                x = Mathf.RoundToInt(worldPosition.x);
-                y = Mathf.RoundToInt(worldPosition.z);
+                Vector3 worldPosition = rayCol.GetPoint(position)  ;
+
+                x = Mathf.RoundToInt(worldPosition.x + _offset.x);
+                y = Mathf.RoundToInt(worldPosition.z + _offset.z);
 
 
 
-                _selectedBlock.transform.position = new Vector3(worldPosition.x, _selectedBlock.transform.position.y, worldPosition.z);
+                _selectedBlock.transform.position = new Vector3(worldPosition.x,
+                    _selectedBlock.transform.position.y, worldPosition.z ) +_offset ;
             }
 
             if (CheckAllow(x, y, _selectedBlock))
@@ -87,8 +100,7 @@ public class Management : MonoBehaviour
                 {
                    
                     _selectedBlock.transform.DOMove(new Vector3(x, 0, y), .3f);
-                    InstallBlock(x, y, _selectedBlock);
-
+                     InstallBlock(x, y, _selectedBlock);
 
                 }
             }
@@ -108,6 +120,7 @@ public class Management : MonoBehaviour
             }
         }
     }
+   
     private bool CheckAllow(int xPosition, int zPosition, Block block)
     {
         for (int x = 0; x < block.BlockWidht; x++)
@@ -174,10 +187,14 @@ public class Management : MonoBehaviour
             }
         }
         Debug.Log("WIN");
-        _winScreen.SetActive(true);
+        // _winScreen.SetActive(true);
+        Invoke(nameof(ShowWin), .25f);
         return true;
     }
-
+    private void ShowWin()
+    {
+        _winScreen.SetActive(true);
+    }
     private void RemoveFromDictionary(Block block)
     {
         List<Vector2Int> keysToRemove = new List<Vector2Int>();
