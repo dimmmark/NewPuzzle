@@ -3,18 +3,28 @@ using UnityEngine;
 public class Bootstrupper : MonoBehaviour
 {
     [SerializeField] private Management _management;
+    public Platform[] Platforms;
+    public Block[] Blocks;
 
-
-    public void Start()
+    public void Awake()
     {
+        Platforms = FindObjectsOfType<Platform>();
+        Blocks = FindObjectsOfType<Block>();
+        Invoke(nameof(Init),.2f);
+    }
+    private void Init()
+    {
+        _management.Init(Platforms, Blocks);    
+
         for (int i = 0; i < _management.Platforms.Length; i++)
         {
-            _management.Platforms[i].Init(_management);
+            Platforms[i].Init(_management);
         }
 
         for (int i = 0; i < _management.Blocks.Length; i++)
         {
-            _management.Blocks[i].Init(_management);
+            Blocks[i].Init(_management);
         }
+
     }
 }

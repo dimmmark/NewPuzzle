@@ -4,7 +4,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public int Capasity;
-    public List<Block> PlatformList = new List<Block>();
+    [HideInInspector] public List<Block> PlatformList = new List<Block>();
     public int Widht;
     public int Height;
     public void Init(Management management)

@@ -1,6 +1,11 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Management : MonoBehaviour
 {
@@ -15,12 +20,20 @@ public class Management : MonoBehaviour
     public Block[] Blocks;
     Platform platform;
     private Vector3 _startPosition;
-    private void Awake()
+    [SerializeField] private GameObject _winScreen;
+    private Vector3 _offset;
+    private void Start()
     {
-        Platforms = FindObjectsOfType<Platform>();
-        Blocks = FindObjectsOfType<Block>();
         _mainCamera = Camera.main;
+      
     }
+
+    public void NextLevel()
+    {
+        int nextLevel = SceneManager.GetActiveScene().buildIndex+1;
+        SceneManager.LoadScene(nextLevel);
+    }
+
     void Update()
     {
         rayCol = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -32,6 +45,7 @@ public class Management : MonoBehaviour
                 if (hit.collider.TryGetComponent<Block>(out Block block))
                 {
                     _selectedBlock = block;
+                block.transform.DOMoveY(.38f, .4f);
                     RemoveFromDictionary(block);
                     _startPosition = _selectedBlock.transform.position;
 
@@ -58,10 +72,12 @@ public class Management : MonoBehaviour
             if (basePlane.Raycast(rayCol, out float position))
             {
                 Vector3 worldPosition = rayCol.GetPoint(position);
-
                 x = Mathf.RoundToInt(worldPosition.x);
                 y = Mathf.RoundToInt(worldPosition.z);
-                _selectedBlock.transform.position = new Vector3(x, 0, y);
+
+
+
+                _selectedBlock.transform.position = new Vector3(worldPosition.x, _selectedBlock.transform.position.y, worldPosition.z);
             }
 
             if (CheckAllow(x, y, _selectedBlock))
@@ -69,7 +85,11 @@ public class Management : MonoBehaviour
                 _selectedBlock.SetColor(true);
                 if (Input.GetMouseButtonUp(0))
                 {
+                   
+                    _selectedBlock.transform.DOMove(new Vector3(x, 0, y), .3f);
                     InstallBlock(x, y, _selectedBlock);
+
+
                 }
             }
             else
@@ -77,11 +97,14 @@ public class Management : MonoBehaviour
                 _selectedBlock.SetColor(false);
                 if (Input.GetMouseButtonUp(0))
                 {
-                    _selectedBlock.transform.position = _startPosition;
+                    // _selectedBlock.transform.position = _startPosition;
+                    _selectedBlock.transform.DOMove(_startPosition, .3f);
                     _selectedBlock.SetStartColor();
                     InstallBlock((int)_startPosition.x, (int)_startPosition.z, _selectedBlock);
-                    _selectedBlock = null;
+                     _selectedBlock = null;
+                    
                 }
+                    
             }
         }
     }
@@ -134,8 +157,10 @@ public class Management : MonoBehaviour
                 }
             }
         }
-        _selectedBlock = null;
-        Console.Clear();
+       
+            _selectedBlock = null;
+        
+          
         CheckWin();
     }
     private bool CheckWin()
@@ -149,6 +174,7 @@ public class Management : MonoBehaviour
             }
         }
         Debug.Log("WIN");
+        _winScreen.SetActive(true);
         return true;
     }
 
@@ -169,93 +195,10 @@ public class Management : MonoBehaviour
             BlocksDictionary.Remove(key);
         }
     }
+    public void Init(Platform[] platforms, Block[] blocks)
+    {
+        Platforms = platforms;
+        Blocks = blocks;
+    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//void Update()
-//{
-//    rayCol = _mainCamera.ScreenPointToRay(Input.mousePosition);
-//    RaycastHit hit;
-//    if (Input.GetMouseButtonDown(0))
-//    {
-
-//        if (Physics.Raycast(rayCol, out hit))
-//        {
-//            if (hit.collider.TryGetComponent<Block>(out Block block))
-//            {
-//                _selectedBlock = block;
-//                RemoveFromDictionary(block);
-//            }
-//        }
-//    }
-//    if (_selectedBlock != null)
-//    {
-//        var basePlane = new Plane(Vector3.up, Vector3.zero);
-
-//        if (basePlane.Raycast(rayCol, out float position))
-//        {
-//            Vector3 worldPosition = rayCol.GetPoint(position);
-
-//            x = Mathf.RoundToInt(worldPosition.x);
-//            y = Mathf.RoundToInt(worldPosition.z);
-//            _selectedBlock.transform.position = new Vector3(x, 0, y);
-//        }
-//    }
-//    if (Input.GetMouseButtonUp(0))
-//    {
-//        if (_selectedBlock)
-//        {
-//            InstallBlock(x, y, _selectedBlock);
-//            _selectedBlock = null;
-//        }
-//    }
-//}
-//private void InstallBlock(int xPosition, int zPosition, Block block)
-//{
-//    for (int x = 0; x < _selectedBlock._blockWidht; x++)
-//    {
-//        for (int z = 0; z < _selectedBlock._blockHeight; z++)
-//        {
-//            if (_selectedBlock.Blocks[x, z])
-//            {
-//                Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
-//                BlocksDictionary.Add(coordinate, _selectedBlock);
-//            }
-//        }
-//    }
-//    foreach (var item in BlocksDictionary)
-//    {
-//        Debug.Log(item);
-//    }
-//}
-//private void RemoveFromDictionary(Block block)
-//{
-//    List<Vector2Int> keysToRemove = new List<Vector2Int>();
-
-//    foreach (KeyValuePair<Vector2Int, Block> entry in BlocksDictionary)
-//    {
-//        if (entry.Value.Equals(block))
-//        {
-//            keysToRemove.Add(entry.Key);
-//        }
-//    }
-
-//    foreach (Vector2Int key in keysToRemove)
-//    {
-//        BlocksDictionary.Remove(key);
-//    }
-//}
-
