@@ -10,11 +10,11 @@ public class Bootstrupper : MonoBehaviour
     {
         Platforms = FindObjectsOfType<Platform>();
         Blocks = FindObjectsOfType<Block>();
-        Invoke(nameof(Init),.2f);
+        Invoke(nameof(Init), .25f);
     }
     private void Init()
     {
-        _management.Init(Platforms, Blocks);    
+        _management.Init(Platforms, Blocks);
 
         for (int i = 0; i < _management.Platforms.Length; i++)
         {

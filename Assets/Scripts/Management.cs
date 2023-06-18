@@ -1,11 +1,7 @@
 using DG.Tweening;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Management : MonoBehaviour
 {
@@ -23,15 +19,23 @@ public class Management : MonoBehaviour
     private Vector3 _startPosition;
     [SerializeField] private GameObject _winScreen;
     private Vector3 _offset;
+    private bool _isWin;
+    [SerializeField] private SoundManager _soundManager;
+    [SerializeField] private ParticleSystem[] _particleSystems;
     private void Start()
     {
         _mainCamera = Camera.main;
-      
     }
 
     public void NextLevel()
     {
-        int nextLevel = SceneManager.GetActiveScene().buildIndex+1;
+        DOTween.KillAll();
+        int levels = SceneManager.sceneCountInBuildSettings-1;
+        Debug.Log(levels);
+        int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        if(nextLevel > levels)
+            SceneManager.LoadScene(0);
+        else
         SceneManager.LoadScene(nextLevel);
     }
 
@@ -39,28 +43,21 @@ public class Management : MonoBehaviour
     {
         rayCol = _mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !_isWin)
         {
             if (Physics.Raycast(rayCol, out hit))
             {
-                
-
-
                 if (hit.collider.TryGetComponent<Block>(out Block block))
                 {
                     _selectedBlock = block;
-
-
                     basePlane.Raycast(rayCol, out float position);
                     Vector3 worldPosition = rayCol.GetPoint(position);
                     _offset = _selectedBlock.transform.position - worldPosition;
-
-
-                    block.transform.DOMoveY(.38f, .4f);
+                    block.transform.DOMoveY(.38f, .25f).SetRelative();
+                    block.transform.DORotate(new Vector3(0, 0, 12f), .075f).SetLoops(2, LoopType.Yoyo);
                     RemoveFromDictionary(block);
                     _startPosition = _selectedBlock.transform.position;
-
-
+                    _soundManager.Play("Up");
                     for (int i = 0; i < Platforms.Length; i++)
                     {
                         for (int j = 0; j < Platforms[i].PlatformList.Count; j++)
@@ -78,30 +75,23 @@ public class Management : MonoBehaviour
         }
         if (_selectedBlock != null)
         {
-           // var basePlane = new Plane(Vector3.up, Vector3.zero);
-
             if (basePlane.Raycast(rayCol, out float position))
             {
-                Vector3 worldPosition = rayCol.GetPoint(position)  ;
+                Vector3 worldPosition = rayCol.GetPoint(position);
 
                 x = Mathf.RoundToInt(worldPosition.x + _offset.x);
                 y = Mathf.RoundToInt(worldPosition.z + _offset.z);
-
-
-
                 _selectedBlock.transform.position = new Vector3(worldPosition.x,
-                    _selectedBlock.transform.position.y, worldPosition.z ) +_offset ;
+                    _selectedBlock.transform.position.y, worldPosition.z) + _offset;
             }
-
             if (CheckAllow(x, y, _selectedBlock))
             {
                 _selectedBlock.SetColor(true);
                 if (Input.GetMouseButtonUp(0))
                 {
-                   
                     _selectedBlock.transform.DOMove(new Vector3(x, 0, y), .3f);
-                     InstallBlock(x, y, _selectedBlock);
-
+                    _soundManager.Play("Down");
+                    InstallBlock(x, y, _selectedBlock);
                 }
             }
             else
@@ -109,18 +99,16 @@ public class Management : MonoBehaviour
                 _selectedBlock.SetColor(false);
                 if (Input.GetMouseButtonUp(0))
                 {
-                    // _selectedBlock.transform.position = _startPosition;
                     _selectedBlock.transform.DOMove(_startPosition, .3f);
                     _selectedBlock.SetStartColor();
                     InstallBlock((int)_startPosition.x, (int)_startPosition.z, _selectedBlock);
-                     _selectedBlock = null;
-                    
+                    _selectedBlock = null;
+                    _soundManager.Play("Down");
                 }
-                    
             }
         }
     }
-   
+
     private bool CheckAllow(int xPosition, int zPosition, Block block)
     {
         for (int x = 0; x < block.BlockWidht; x++)
@@ -170,10 +158,10 @@ public class Management : MonoBehaviour
                 }
             }
         }
-       
-            _selectedBlock = null;
-        
-          
+
+        _selectedBlock = null;
+
+
         CheckWin();
     }
     private bool CheckWin()
@@ -182,18 +170,33 @@ public class Management : MonoBehaviour
         {
             if (!Platforms[i].Check())
             {
-                Debug.Log("LOSE");
+               // Debug.Log("LOSE");
                 return false;
             }
         }
-        Debug.Log("WIN");
+       // Debug.Log("WIN");
         // _winScreen.SetActive(true);
+        _isWin = true;
         Invoke(nameof(ShowWin), .25f);
         return true;
     }
     private void ShowWin()
     {
+        // DOTween.KillAll();
         _winScreen.SetActive(true);
+        MakeWinEffect();
+    }
+    private void MakeWinEffect()
+    {
+        foreach (var block in Blocks)
+        {
+            block.transform.DOPunchPosition(Vector3.up, 1f, 1, 1);
+        }
+        _soundManager.Play("Complete");
+        foreach(var ps in _particleSystems)
+        {
+            ps.Play();
+        }
     }
     private void RemoveFromDictionary(Block block)
     {

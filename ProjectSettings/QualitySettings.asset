@@ -7,13 +7,13 @@ QualitySettings:
   m_CurrentQuality: 0
   m_QualitySettings:
   - serializedVersion: 3
-    name: High Fidelity
+    name: High
     pixelLightCount: 2
     shadows: 2
     shadowResolution: 1
     shadowProjection: 1
-    shadowCascades: 2
-    shadowDistance: 40
+    shadowCascades: 1
+    shadowDistance: 3
     shadowNearPlaneOffset: 3
     shadowCascade2Split: 0.33333334
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
@@ -21,7 +21,7 @@ QualitySettings:
     skinWeights: 255
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
-    anisotropicTextures: 2
+    anisotropicTextures: 0
     antiAliasing: 4
     softParticles: 0
     softVegetation: 1
@@ -38,7 +38,7 @@ QualitySettings:
     streamingMipmapsRenderersPerFrame: 512
     streamingMipmapsMaxLevelReduction: 2
     streamingMipmapsMaxFileIORequests: 1024
-    particleRaycastBudget: 2048
+    particleRaycastBudget: 256
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
@@ -58,13 +58,14 @@ QualitySettings:
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Android: 0
-    CloudRendering: 0
+    EmbeddedLinux: 0
     GameCoreScarlett: 0
     GameCoreXboxOne: 0
-    Lumin: 0
+    LinuxHeadlessSimulation: 0
     Nintendo Switch: 0
     PS4: 0
     PS5: 0
+    QNX: 0
     Server: 0
     Stadia: 0
     Standalone: 0

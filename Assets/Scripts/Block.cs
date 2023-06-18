@@ -56,9 +56,13 @@ public class Block : MonoBehaviour
     public void SetColor(bool avaliable)
     {
         if (avaliable)
+        {
             _renderer.material = _startColor;
+        }
         else
+        {
             _renderer.material = _denyColor;
+        }
     }
 
     public void SetStartColor()
