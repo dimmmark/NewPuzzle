@@ -30,11 +30,10 @@ public class Management : MonoBehaviour
     public void NextLevel()
     {
         DOTween.KillAll();
-        int levels = SceneManager.sceneCountInBuildSettings-1;
-        Debug.Log(levels);
+        int levels = SceneManager.sceneCountInBuildSettings-2;
         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
         if(nextLevel > levels)
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         else
         SceneManager.LoadScene(nextLevel);
     }
@@ -185,6 +184,7 @@ public class Management : MonoBehaviour
         // DOTween.KillAll();
         _winScreen.SetActive(true);
         MakeWinEffect();
+        LevelIndex++;
     }
     private void MakeWinEffect()
     {
@@ -221,4 +221,15 @@ public class Management : MonoBehaviour
         Blocks = blocks;
     }
 
+    public int LevelIndex
+    {
+        get => PlayerPrefs.GetInt("LevelIndex", 1);
+
+        private set
+        {
+            PlayerPrefs.SetInt("LevelIndex", value);
+            PlayerPrefs.Save();
+        }
+
+    }
 }
