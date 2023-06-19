@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869009290213604185}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.5394, y: 0.006, z: 0.979}
-  m_LocalScale: {x: 46.36429, y: 91.087845, z: 11.782258}
+  m_LocalPosition: {x: 0.5163, y: 0.006, z: 0.9946}
+  m_LocalScale: {x: 48.701973, y: 94.97463, z: 11.782258}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1814676902294211161}
@@ -116,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 2785449098869243109}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5326843535386385156
 MonoBehaviour:
@@ -130,13 +130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84486e48fa181747a829ae9a1f38979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockColor: 1
   BlockWidht: 2
   BlockHeight: 2
   _renderer: {fileID: 3929393709935223532}
   _denyColor: {fileID: 2100000, guid: 4df01bccdba5848489413e5fa300d2d2, type: 2}
   _allowColor: {fileID: 2100000, guid: 428511107797ae84ba6592aa7f30c2ef, type: 2}
   _startColor: {fileID: 2100000, guid: b882adeaff6528d4daf30779595191b2, type: 2}
-  BlockColor: 1
+  _redColor: {fileID: 0}
+  _yellowColor: {fileID: 0}
+  _greenColor: {fileID: 0}
+  _blueColor: {fileID: 0}
   _11: 1
   _12: 1
   _13: 0

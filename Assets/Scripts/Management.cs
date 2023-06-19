@@ -30,7 +30,7 @@ public class Management : MonoBehaviour
     public void NextLevel()
     {
         DOTween.KillAll();
-        int levels = SceneManager.sceneCountInBuildSettings-2;
+        int levels = SceneManager.sceneCountInBuildSettings-1;
         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
         if(nextLevel > levels)
             SceneManager.LoadScene(1);
