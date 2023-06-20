@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4565973233910925372}
   - component: {fileID: 6157958060112736371}
   - component: {fileID: 1630239660179022339}
+  - component: {fileID: 7165368081106911631}
   m_Layer: 0
   m_Name: partT
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3184584530099725193}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6157958060112736371
 BoxCollider:
@@ -53,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.8889084, y: 0.17361408, z: 0.80761516}
-  m_Center: {x: 1.5162106, y: 0.24385324, z: 0.56118375}
+  m_Size: {x: 2.8889084, y: 0.17361408, z: 0.92947555}
+  m_Center: {x: 1.5162106, y: 0.24385324, z: 0.50025356}
 --- !u!65 &1630239660179022339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74,8 +75,40 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.88350487, y: 0.17461947, z: 0.98160076}
-  m_Center: {x: 1.5196056, y: 0.22146188, z: 1.4538794}
+  m_Size: {x: 0.9471655, y: 0.17461947, z: 0.9555824}
+  m_Center: {x: 1.5005078, y: 0.22146188, z: 1.4408702}
+--- !u!114 &7165368081106911631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384899282165670554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84486e48fa181747a829ae9a1f38979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockColor: 1
+  BlockWidht: 3
+  BlockHeight: 2
+  _renderer: {fileID: 525115772697226518}
+  _denyColor: {fileID: 2100000, guid: 4df01bccdba5848489413e5fa300d2d2, type: 2}
+  _allowColor: {fileID: 2100000, guid: 428511107797ae84ba6592aa7f30c2ef, type: 2}
+  _startColor: {fileID: 0}
+  _redColor: {fileID: 2100000, guid: 819152cbb2b8d244aa9535d30b7f6ab6, type: 2}
+  _yellowColor: {fileID: 2100000, guid: b882adeaff6528d4daf30779595191b2, type: 2}
+  _greenColor: {fileID: 2100000, guid: 0e9ed8cfe394b3d4d91d9768be503d72, type: 2}
+  _blueColor: {fileID: 2100000, guid: c7dcdb2be2442754dbbf8edd8bac243e, type: 2}
+  _11: 1
+  _12: 0
+  _13: 0
+  _21: 1
+  _22: 1
+  _23: 0
+  _31: 1
+  _32: 0
+  _33: 0
 --- !u!1 &8132176658824803746
 GameObject:
   m_ObjectHideFlags: 0
