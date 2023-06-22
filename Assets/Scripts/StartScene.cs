@@ -18,6 +18,7 @@ public class StartScene : MonoBehaviour
     private void StartGame()
     {
         var level = PlayerPrefs.GetInt("LevelIndex", 1);
-        SceneManager.LoadScene(level);
+        //SceneManager.LoadScene(level);
+        SceneManager.LoadScene(1);
     }
 }
