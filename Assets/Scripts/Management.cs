@@ -22,6 +22,12 @@ public class Management : MonoBehaviour
     private bool _isWin;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private ParticleSystem[] _particleSystems;
+    private float _clickDalay = .6f;
+    private float _timer;
+    private bool _isShadow;
+    [SerializeField] private List<GameObject> _shadows = new List<GameObject>();
+    Vector2Int oldPositionShadow = new Vector2Int(0, 0);
+    bool firstCompare = true;
     private void Start()
     {
         _mainCamera = Camera.main;
@@ -30,20 +36,22 @@ public class Management : MonoBehaviour
     public void NextLevel()
     {
         DOTween.KillAll();
-        int levels = SceneManager.sceneCountInBuildSettings-1;
+        int levels = SceneManager.sceneCountInBuildSettings - 1;
         int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if(nextLevel > levels)
+        if (nextLevel > levels)
             SceneManager.LoadScene(1);
         else
-        SceneManager.LoadScene(nextLevel);
+            SceneManager.LoadScene(nextLevel);
     }
 
     void Update()
     {
         rayCol = _mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Input.GetMouseButtonDown(0) && !_isWin)
+        _timer += Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && !_isWin && _clickDalay < _timer)
         {
+            _timer = 0;
             if (Physics.Raycast(rayCol, out hit))
             {
                 if (hit.collider.TryGetComponent<Block>(out Block block))
@@ -82,20 +90,47 @@ public class Management : MonoBehaviour
                 y = Mathf.RoundToInt(worldPosition.z + _offset.z);
                 _selectedBlock.transform.position = new Vector3(worldPosition.x,
                     _selectedBlock.transform.position.y, worldPosition.z) + _offset;
+
+                Vector2Int newPosition = new Vector2Int(x, y);
+               // Vector2Int oldPositionShadow = new Vector2Int(0,0);
+                //bool firstCompare = true;
+                if (oldPositionShadow == newPosition || firstCompare)
+                {
+
+                oldPositionShadow = newPosition;
+                    firstCompare = false;
+                }
+                else
+                {
+                    oldPositionShadow = newPosition;
+                    RemoveShadow();
+                }
+
             }
             if (CheckAllow(x, y, _selectedBlock))
             {
                 _selectedBlock.SetColor(true);
+                if (!_isShadow)
+                {
+                    ShowShadow(x, y, _selectedBlock);
+                    _isShadow = true;
+                }
+
                 if (Input.GetMouseButtonUp(0))
                 {
                     _selectedBlock.transform.DOMove(new Vector3(x, 0, y), .3f);
                     _soundManager.Play("Down");
                     InstallBlock(x, y, _selectedBlock);
+                    RemoveShadow();
                 }
             }
             else
             {
                 _selectedBlock.SetColor(false);
+
+                RemoveShadow();
+
+
                 if (Input.GetMouseButtonUp(0))
                 {
                     _selectedBlock.transform.DOMove(_startPosition, .3f);
@@ -117,6 +152,7 @@ public class Management : MonoBehaviour
                 if (block.Blocks[x, z])
                 {
                     Vector2Int coordinate = new Vector2Int(xPosition + x, zPosition + z);
+                    Vector3 shadowCoordinate = new Vector3(coordinate.x, .15f, coordinate.y);
                     if (PlatformsDictionary.ContainsKey(coordinate) && (!BlocksDictionary.ContainsKey(coordinate)))
                     {
 
@@ -129,6 +165,32 @@ public class Management : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void ShowShadow(int xPosition, int zPosition, Block block)
+    {
+
+        for (int x = 0; x < block.BlockWidht; x++)
+        {
+            for (int z = 0; z < block.BlockHeight; z++)
+            {
+                if (block.Blocks[x, z])
+                {
+                    Vector3 shadowCoordinate = new Vector3(xPosition + x, .15f, zPosition + z);
+
+                   GameObject shadow = Pooler.Instance.SpawnFromPool("Shadow", shadowCoordinate, Quaternion.identity);
+                    _shadows.Add(shadow);
+                }
+            }
+        }
+    }
+    private void RemoveShadow()
+    {
+        foreach (var shadow in _shadows)
+        {
+            shadow.SetActive(false);
+            _isShadow = false;
+        }
     }
     public void InstallPlatform(int xPosition, int zPosition, Platform platform)
     {
@@ -169,11 +231,11 @@ public class Management : MonoBehaviour
         {
             if (!Platforms[i].Check())
             {
-               // Debug.Log("LOSE");
+                // Debug.Log("LOSE");
                 return false;
             }
         }
-       // Debug.Log("WIN");
+        // Debug.Log("WIN");
         // _winScreen.SetActive(true);
         _isWin = true;
         Invoke(nameof(ShowWin), .25f);
@@ -193,7 +255,7 @@ public class Management : MonoBehaviour
             block.transform.DOPunchPosition(Vector3.up, 1f, 1, 1);
         }
         _soundManager.Play("Complete");
-        foreach(var ps in _particleSystems)
+        foreach (var ps in _particleSystems)
         {
             ps.Play();
         }

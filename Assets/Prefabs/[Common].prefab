@@ -131,6 +131,62 @@ MonoBehaviour:
   _particleSystems:
   - {fileID: 7899792520994684942}
   - {fileID: 6428713658405856472}
+  _shadows:
+  - {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91, type: 3}
+  - {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91, type: 3}
+  - {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91, type: 3}
+  - {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91, type: 3}
+  - {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91, type: 3}
+  - {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91, type: 3}
+--- !u!1 &2279633734545664806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8854343365667179902}
+  - component: {fileID: 9066288677995509571}
+  m_Layer: 0
+  m_Name: Pooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8854343365667179902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279633734545664806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8290712771373842650}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9066288677995509571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279633734545664806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f63024118440cf1428c28c19a3284c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: Shadow
+    Prefab: {fileID: 1183830972795843450, guid: 18ac572eb2a3a9445b9768e852bccf91,
+      type: 3}
+    Size: 6
 --- !u!1 &2634512168672799396
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +913,7 @@ Transform:
   - {fileID: 6627655692172484086}
   - {fileID: 6714119530172577480}
   - {fileID: 20365924713458395}
+  - {fileID: 8854343365667179902}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
