@@ -209,14 +209,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 5, y: 13, z: -3.7}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: 5, y: 13, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!4 &349988436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 897481157912045427, guid: 13cfe32f561ea1d4f81d3385fc40458a,
@@ -309,21 +309,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: part11x12x22S (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6511072826153234244, guid: fd7709a848231d544adfeefa010b3bc7,
-        type: 3}
-      propertyPath: BlockColor
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6511072826153234244, guid: fd7709a848231d544adfeefa010b3bc7,
-        type: 3}
-      propertyPath: _startColor
-      value: 
-      objectReference: {fileID: 2100000, guid: c7dcdb2be2442754dbbf8edd8bac243e, type: 2}
-    - target: {fileID: 7429537288858879320, guid: fd7709a848231d544adfeefa010b3bc7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c7dcdb2be2442754dbbf8edd8bac243e, type: 2}
     - target: {fileID: 8271779806670124855, guid: fd7709a848231d544adfeefa010b3bc7,
         type: 3}
       propertyPath: m_RootOrder
@@ -410,16 +395,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1479721428}
     m_Modifications:
-    - target: {fileID: 837546530007304391, guid: 29de7c99291c1de42a12c883ed07c167,
-        type: 3}
-      propertyPath: BlockColor
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 837546530007304391, guid: 29de7c99291c1de42a12c883ed07c167,
-        type: 3}
-      propertyPath: _startColor
-      value: 
-      objectReference: {fileID: 2100000, guid: c7dcdb2be2442754dbbf8edd8bac243e, type: 2}
     - target: {fileID: 1057537386636250007, guid: 29de7c99291c1de42a12c883ed07c167,
         type: 3}
       propertyPath: m_Name
@@ -480,11 +455,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6449268507505667507, guid: 29de7c99291c1de42a12c883ed07c167,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c7dcdb2be2442754dbbf8edd8bac243e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -773,6 +743,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1479721428}
     m_Modifications:
+    - target: {fileID: 837546530007304391, guid: 29de7c99291c1de42a12c883ed07c167,
+        type: 3}
+      propertyPath: BlockColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 837546530007304391, guid: 29de7c99291c1de42a12c883ed07c167,
+        type: 3}
+      propertyPath: _startColor
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
     - target: {fileID: 1057537386636250007, guid: 29de7c99291c1de42a12c883ed07c167,
         type: 3}
       propertyPath: m_Name
@@ -833,6 +813,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6449268507505667507, guid: 29de7c99291c1de42a12c883ed07c167,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -851,6 +836,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: part11x12x22S
       objectReference: {fileID: 0}
+    - target: {fileID: 6511072826153234244, guid: fd7709a848231d544adfeefa010b3bc7,
+        type: 3}
+      propertyPath: BlockColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6511072826153234244, guid: fd7709a848231d544adfeefa010b3bc7,
+        type: 3}
+      propertyPath: _startColor
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
+    - target: {fileID: 7429537288858879320, guid: fd7709a848231d544adfeefa010b3bc7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
     - target: {fileID: 8271779806670124855, guid: fd7709a848231d544adfeefa010b3bc7,
         type: 3}
       propertyPath: m_RootOrder

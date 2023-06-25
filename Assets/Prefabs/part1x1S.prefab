@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 0
   m_Name: part1x1S
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 6767009824393448668}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1695640233673723403
 BoxCollider:
@@ -73,11 +73,11 @@ MonoBehaviour:
   _renderer: {fileID: 7208007273787766301}
   _denyColor: {fileID: 2100000, guid: 4df01bccdba5848489413e5fa300d2d2, type: 2}
   _allowColor: {fileID: 2100000, guid: 428511107797ae84ba6592aa7f30c2ef, type: 2}
-  _startColor: {fileID: 2100000, guid: b882adeaff6528d4daf30779595191b2, type: 2}
-  _redColor: {fileID: 2100000, guid: 819152cbb2b8d244aa9535d30b7f6ab6, type: 2}
-  _yellowColor: {fileID: 2100000, guid: b882adeaff6528d4daf30779595191b2, type: 2}
-  _greenColor: {fileID: 2100000, guid: 0e9ed8cfe394b3d4d91d9768be503d72, type: 2}
-  _blueColor: {fileID: 2100000, guid: c7dcdb2be2442754dbbf8edd8bac243e, type: 2}
+  _startColor: {fileID: 2100000, guid: 9b61628865251a04ca1573d0909845cd, type: 2}
+  _redColor: {fileID: 2100000, guid: 265a180ebf0f62e4191c01676e315f51, type: 2}
+  _yellowColor: {fileID: 2100000, guid: 9b61628865251a04ca1573d0909845cd, type: 2}
+  _greenColor: {fileID: 2100000, guid: 308edec93af543445812b20c0b31b6ef, type: 2}
+  _blueColor: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
   _11: 1
   _12: 0
   _13: 0
@@ -148,7 +148,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b882adeaff6528d4daf30779595191b2, type: 2}
+  - {fileID: 2100000, guid: 9b61628865251a04ca1573d0909845cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

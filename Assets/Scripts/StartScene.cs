@@ -11,8 +11,8 @@ public class StartScene : MonoBehaviour
     [SerializeField] private Image _logoPreview;
     private void Start()
     {
-        _logoPreview.DOFade(0, 1);
-        Invoke(nameof(StartGame), 1.25f);
+        Invoke(nameof(FadeImage), 1.5f);
+        Invoke(nameof(StartGame), 2.5f);
     }
 
     private void StartGame()
@@ -20,5 +20,9 @@ public class StartScene : MonoBehaviour
         var level = PlayerPrefs.GetInt("LevelIndex", 1);
         //SceneManager.LoadScene(level);
         SceneManager.LoadScene(1);
+    }
+    private void FadeImage()
+    {
+        _logoPreview.DOFade(0, .95f);
     }
 }
