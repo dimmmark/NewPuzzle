@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum BlockColor
 {
-    red, yellow, green, blue
+    red, yellow, green, blue, violet
 }
 public class Block : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class Block : MonoBehaviour
     [SerializeField] private Material _yellowColor;
     [SerializeField] private Material _greenColor;
     [SerializeField] private Material _blueColor;
+    [SerializeField] private Material _violetColor;
     [SerializeField] private bool _11;
     [SerializeField] private bool _12;
     [SerializeField] private bool _13;
@@ -90,6 +91,10 @@ public class Block : MonoBehaviour
             case BlockColor.green:
                 _renderer.material = _greenColor;
                 _startColor = _greenColor;
+                break;
+            case BlockColor.violet:
+                _renderer.material = _violetColor;
+                _startColor = _violetColor;
                 break;
         }
     }
