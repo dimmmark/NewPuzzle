@@ -37,9 +37,10 @@ public class Management : MonoBehaviour
     {
         DOTween.KillAll();
         int levels = SceneManager.sceneCountInBuildSettings - 1;
-        int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        // int nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        int nextLevel = PlayerPrefs.GetInt("LevelIndex", 1);
         if (nextLevel > levels)
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(Random.Range(8, SceneManager.sceneCountInBuildSettings - 1));
         else
             SceneManager.LoadScene(nextLevel);
     }

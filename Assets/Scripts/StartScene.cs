@@ -1,5 +1,5 @@
 using DG.Tweening;
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +19,10 @@ public class StartScene : MonoBehaviour
     {
         var level = PlayerPrefs.GetInt("LevelIndex", 1);
         //SceneManager.LoadScene(level);
-        SceneManager.LoadScene(1);
+        if (level > SceneManager.sceneCountInBuildSettings - 1)
+            SceneManager.LoadScene(Random.Range(8, SceneManager.sceneCountInBuildSettings - 1));
+        else
+            SceneManager.LoadScene(level);
     }
     private void FadeImage()
     {
