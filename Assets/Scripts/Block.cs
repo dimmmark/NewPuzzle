@@ -28,6 +28,7 @@ public class Block : MonoBehaviour
     [SerializeField] private bool _31;
     [SerializeField] private bool _32;
     [SerializeField] private bool _33;
+    //[SerializeField] private Collider[] _colliders;
     void Start()
     {
         Blocks = new bool[BlockWidht, BlockHeight];
@@ -59,10 +60,18 @@ public class Block : MonoBehaviour
         if (avaliable)
         {
             _renderer.material = _startColor;
+            //for (int i = 0; i < _colliders.Length; i++)
+            //{
+            //    _colliders[i].enabled = true;
+            //}
         }
         else
         {
             _renderer.material = _denyColor;
+        //    for (int i = 0; i < _colliders.Length; i++)
+        //    {
+        //        _colliders[i].enabled = false;
+        //    }
         }
     }
 

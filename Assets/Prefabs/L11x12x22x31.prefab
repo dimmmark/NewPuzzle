@@ -116,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 5510468297623309030}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6379710130017077289
 MonoBehaviour:
@@ -141,6 +141,7 @@ MonoBehaviour:
   _yellowColor: {fileID: 2100000, guid: 9b61628865251a04ca1573d0909845cd, type: 2}
   _greenColor: {fileID: 2100000, guid: 308edec93af543445812b20c0b31b6ef, type: 2}
   _blueColor: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
+  _violetColor: {fileID: 0}
   _11: 1
   _12: 1
   _13: 0

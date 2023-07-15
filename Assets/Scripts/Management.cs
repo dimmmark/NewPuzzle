@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,15 +23,22 @@ public class Management : MonoBehaviour
     private bool _isWin;
     [SerializeField] private SoundManager _soundManager;
     [SerializeField] private ParticleSystem[] _particleSystems;
-    private float _clickDalay = .6f;
+    private float _clickDalay = .4f;
     private float _timer;
     private bool _isShadow;
     [SerializeField] private List<GameObject> _shadows = new List<GameObject>();
     Vector2Int oldPositionShadow = new Vector2Int(0, 0);
     bool firstCompare = true;
+
+    [DllImport("__Internal")]
+    private static extern void SetToLeaderBoard(int Value);
+    [DllImport("__Internal")]
+    private static extern void ShowAddInternal();
     private void Start()
     {
         _mainCamera = Camera.main;
+        ShowAddInternal();
+        SetToLeaderBoard(LevelIndex);
     }
 
     public void NextLevel()
@@ -50,7 +58,8 @@ public class Management : MonoBehaviour
         rayCol = _mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         _timer += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && !_isWin && _clickDalay < _timer)
+     
+        if (Input.GetMouseButtonDown(0) && !_isWin && _clickDalay < _timer )
         {
             _timer = 0;
             if (Physics.Raycast(rayCol, out hit))
@@ -117,12 +126,14 @@ public class Management : MonoBehaviour
                     _isShadow = true;
                 }
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && _selectedBlock )
                 {
+                    _timer = 0;
                     _selectedBlock.transform.DOMove(new Vector3(x, 0, y), .3f);
                     _soundManager.Play("Down");
                     InstallBlock(x, y, _selectedBlock);
                     RemoveShadow();
+                    
                 }
             }
             else
@@ -132,18 +143,20 @@ public class Management : MonoBehaviour
                 RemoveShadow();
 
 
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && _selectedBlock)
                 {
+                    _timer = 0;
                     _selectedBlock.transform.DOMove(_startPosition, .3f);
                     _selectedBlock.SetStartColor();
                     InstallBlock((int)_startPosition.x, (int)_startPosition.z, _selectedBlock);
                     _selectedBlock = null;
+                 
                     _soundManager.Play("Down");
                 }
             }
         }
     }
-
+    
     private bool CheckAllow(int xPosition, int zPosition, Block block)
     {
         for (int x = 0; x < block.BlockWidht; x++)

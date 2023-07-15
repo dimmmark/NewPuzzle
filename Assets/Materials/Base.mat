@@ -13,15 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _GLOSSYREFLECTIONS_OFF
-  m_InvalidKeywords:
-  - _MK_ARTISTIC_PROJECTION_SCREEN_SPACE
-  - _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
-  - _MK_OUTLINE_HULL_CLIP
-  - _MK_RECEIVE_SHADOWS
-  - _MK_SPECULAR_ISOTROPIC
-  - _MK_WRAPPED_DIFFUSE
-  - _RECEIVESHADOWS_ON
-  - _WRAPPEDLIGHTING_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -159,6 +151,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Add: 0.27
     - _AdvancedTab: 0
     - _AlphaClip: 0
     - _AlphaClipping: 0
@@ -167,6 +160,8 @@ Material:
     - _Artistic: 0
     - _ArtisticFrequency: 1
     - _ArtisticProjection: 1
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
     - _Blend: 0
     - _BlendDst: 0
     - _BlendModePreserveSpecular: 1
@@ -208,8 +203,9 @@ Material:
     - _LightBands: 4
     - _LightBandsScale: 0.5
     - _LightThreshold: 0.5
-    - _Metallic: 0
+    - _Metallic: 0.29
     - _Mode: 0
+    - _Mult: 36
     - _NormalMapIntensity: 1
     - _OcclusionStrength: 1
     - _OptionsTab: 1
@@ -231,7 +227,7 @@ Material:
     - _RimThresholdOffset: 0.25
     - _Saturation: 1
     - _SketchMapScale: 1
-    - _Smoothness: 0.738
+    - _Smoothness: 0.38
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
@@ -262,7 +258,8 @@ Material:
     m_Colors:
     - _AlbedoColor: {r: 0.62745106, g: 0.58431375, b: 0.57647055, a: 1}
     - _BaseColor: {r: 0.627451, g: 0.58431375, b: 0.5764706, a: 1}
-    - _Color: {r: 0.62745106, g: 0.58431375, b: 0.57647055, a: 1}
+    - _Color: {r: 0.6603774, g: 0.60908395, b: 0.6011926, a: 1}
+    - _Color1: {r: 0.7735849, g: 0.72727084, b: 0.71885014, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}

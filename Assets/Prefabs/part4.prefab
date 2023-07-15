@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948170062986691140}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.5207, y: 0, z: 1.9862}
-  m_LocalScale: {x: 49.32354, y: 94.60835, z: 15}
+  m_LocalPosition: {x: 0.5139, y: 0, z: 1.9905}
+  m_LocalScale: {x: 49.550404, y: 96.110054, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2357381983835448561}
@@ -183,6 +183,7 @@ MonoBehaviour:
   _yellowColor: {fileID: 2100000, guid: 9b61628865251a04ca1573d0909845cd, type: 2}
   _greenColor: {fileID: 2100000, guid: 308edec93af543445812b20c0b31b6ef, type: 2}
   _blueColor: {fileID: 2100000, guid: 7ec572bc07a993641a36e9c8b1db72ad, type: 2}
+  _violetColor: {fileID: 0}
   _11: 1
   _12: 1
   _13: 0
